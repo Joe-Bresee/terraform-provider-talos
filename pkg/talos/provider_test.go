@@ -47,6 +47,10 @@ func (c *dynamicConfig) render() string {
 	c.IsoURL = fmt.Sprintf("https://github.com/siderolabs/talos/releases/download/%s/metal-amd64.iso", gendata.VersionTag)
 
 	configTemplate := `
+provider "libvirt" {
+  uri = "qemu:///system"
+}
+
 resource "talos_machine_secrets" "this" {}
 
 resource "libvirt_volume" "cp" {
